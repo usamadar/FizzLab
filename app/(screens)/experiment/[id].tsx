@@ -37,6 +37,31 @@ const experimentData: Record<string, ExperimentData> = {
       "Adult supervision recommended",
       "Perform in a well-ventilated area"
     ]
+  },
+  "2": {
+    id: "2",
+    title: "Lava Lamp",
+    description: "Create a colorful display of moving bubbles using household items!",
+    materials: [
+      { name: "Vegetable Oil", amount: "1 cup", icon: "water-outline" },
+      { name: "Water", amount: "1/4 cup", icon: "beaker-outline" },
+      { name: "Food Coloring", amount: "10 drops", icon: "color-palette-outline" },
+      { name: "Alka-Seltzer", amount: "1 tablet", icon: "tablet-portrait-outline" },
+      { name: "Clear Bottle", amount: "1", icon: "flask-outline" },
+    ],
+    steps: [
+      "Fill the bottle about 2/3 with vegetable oil",
+      "Add water until the bottle is nearly full",
+      "Add several drops of food coloring",
+      "Break the Alka-Seltzer tablet into small pieces",
+      "Drop in one piece and watch the reaction!"
+    ],
+    safetyNotes: [
+      "Do not drink the mixture",
+      "Keep away from eyes",
+      "Adult supervision recommended",
+      "Clean up spills immediately to prevent slipping"
+    ]
   }
 };
 

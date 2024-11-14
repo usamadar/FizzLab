@@ -30,6 +30,28 @@ const experimentResults: Record<string, {
       "The gas produced is the same as what we breathe out",
       "Ancient Egyptians used similar reactions for baking"
     ]
+  },
+  "2": {
+    reaction: [
+      "When you add the Alka-Seltzer:",
+      "• Colored water bubbles rise through the oil",
+      "• Bubbles float up and sink back down",
+      "• The mixture creates a mesmerizing lava lamp effect"
+    ],
+    scientificExplanation: 
+      "This experiment demonstrates density and polarity! Oil and water don't mix because of their different densities and molecular structures. The Alka-Seltzer creates gas bubbles that carry the colored water upward, then sink when the bubbles pop.",
+    realWorldApplications: [
+      "Oil-water separation in industry",
+      "Making salad dressings",
+      "Cleaning up oil spills",
+      "Understanding fluid dynamics"
+    ],
+    funFacts: [
+      "Original lava lamps were invented in 1963",
+      "Oil floats because it's less dense than water",
+      "Water molecules are polar, oil molecules are non-polar",
+      "This principle helps in environmental cleanup"
+    ]
   }
 };
 
