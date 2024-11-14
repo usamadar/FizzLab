@@ -116,7 +116,7 @@ export default function ExperimentResultScreen() {
 
         <TouchableOpacity 
           style={styles.button}
-          onPress={() => router.push('/')}
+          onPress={() => router.push('/(screens)')}
         >
           <Text style={styles.buttonText}>Try Another Experiment</Text>
         </TouchableOpacity>
