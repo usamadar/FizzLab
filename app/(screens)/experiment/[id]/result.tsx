@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter, useNavigation } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { setExperimentStatus, resetExperimentStatus } from '../../../utils/storage';
+import { CommonActions } from '@react-navigation/native';
 
 const experimentResults: Record<string, {
   reaction: string[];
@@ -103,8 +104,9 @@ const experimentResults: Record<string, {
 };
 
 export default function ExperimentResultScreen() {
-  const { id } = useLocalSearchParams();
   const router = useRouter();
+  const navigation = useNavigation();
+  const { id } = useLocalSearchParams();
   const results = experimentResults[id as string];
 
   if (!results) {
@@ -130,6 +132,18 @@ export default function ExperimentResultScreen() {
   useEffect(() => {
     handleComplete();
   }, []);
+
+
+  const handleGoHome = () => {
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [
+          { name: '(screens)/index' }
+        ],
+      })
+    );
+  };
 
   return (
     <ScrollView style={styles.container}>
@@ -180,7 +194,7 @@ export default function ExperimentResultScreen() {
         <View style={styles.buttonContainer}>
           <TouchableOpacity 
             style={styles.button}
-            onPress={() => router.push('/(screens)')}
+            onPress={handleGoHome}
           >
             <Text style={styles.buttonText}>Try Another Experiment</Text>
           </TouchableOpacity>
