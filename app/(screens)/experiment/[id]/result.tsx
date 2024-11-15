@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+import { setExperimentStatus, resetExperimentStatus } from '../../../utils/storage';
 
 const experimentResults: Record<string, {
   reaction: string[];
@@ -52,6 +53,52 @@ const experimentResults: Record<string, {
       "Water molecules are polar, oil molecules are non-polar",
       "This principle helps in environmental cleanup"
     ]
+  },
+  "3": {
+    reaction: [
+      "When soap touches the milk:",
+      "• Colors start swirling instantly",
+      "• Beautiful patterns form",
+      "• Colors mix and create new shades",
+      "• Movement continues for several seconds"
+    ],
+    scientificExplanation: 
+      "This demonstrates surface tension! The soap breaks down milk's surface tension and fat molecules. As the soap molecules race around to attach to the fat molecules, they create currents in the milk that move the food coloring around.",
+    realWorldApplications: [
+      "Understanding detergents",
+      "Studying molecular interactions",
+      "Food science",
+      "Chemical dispersal patterns"
+    ],
+    funFacts: [
+      "Whole milk works best due to higher fat content",
+      "This principle helps soap clean dishes",
+      "Similar effects occur in cloud formation",
+      "Artists use this technique in paper marbling"
+    ]
+  },
+  "4": {
+    reaction: [
+      "Over the course of a week:",
+      "• Crystals begin forming within 24 hours",
+      "• Crystal structures grow larger each day",
+      "• Different colors create unique patterns",
+      "• Final crystals can be several centimeters long"
+    ],
+    scientificExplanation: 
+      "This demonstrates supersaturation and crystallization. When the hot water cools, it can't hold as much salt in solution. The excess salt precipitates out as crystals. The slow cooling allows large, well-formed crystals to grow.",
+    realWorldApplications: [
+      "Mineral formation in nature",
+      "Industrial crystallization processes",
+      "Gemstone formation",
+      "Manufacturing of pharmaceuticals"
+    ],
+    funFacts: [
+      "Natural crystals can take thousands of years to form",
+      "Each crystal has a unique molecular structure",
+      "Temperature affects crystal size and shape",
+      "Many precious gems are naturally formed crystals"
+    ]
   }
 };
 
@@ -67,6 +114,22 @@ export default function ExperimentResultScreen() {
       </View>
     );
   }
+
+  const handleComplete = async () => {
+    await setExperimentStatus(id as string, {
+      isCompleted: true,
+      lastCompletedAt: new Date()
+    });
+  };
+
+  const handleReset = async () => {
+    await resetExperimentStatus(id as string);
+    router.push('/(screens)');
+  };
+
+  useEffect(() => {
+    handleComplete();
+  }, []);
 
   return (
     <ScrollView style={styles.container}>
@@ -114,12 +177,21 @@ export default function ExperimentResultScreen() {
           </View>
         </View>
 
-        <TouchableOpacity 
-          style={styles.button}
-          onPress={() => router.push('/(screens)')}
-        >
-          <Text style={styles.buttonText}>Try Another Experiment</Text>
-        </TouchableOpacity>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity 
+            style={styles.button}
+            onPress={() => router.push('/(screens)')}
+          >
+            <Text style={styles.buttonText}>Try Another Experiment</Text>
+          </TouchableOpacity>
+          
+          <TouchableOpacity 
+            style={[styles.button, styles.resetButton]}
+            onPress={handleReset}
+          >
+            <Text style={[styles.buttonText, styles.resetButtonText]}>Reset Progress</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </ScrollView>
   );
@@ -194,5 +266,17 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 18,
     fontWeight: '600',
+  },
+  buttonContainer: {
+    marginTop: 20,
+    gap: 12,
+  },
+  resetButton: {
+    backgroundColor: 'transparent',
+    borderWidth: 1,
+    borderColor: '#FF3B30',
+  },
+  resetButtonText: {
+    color: '#FF3B30',
   },
 }); 

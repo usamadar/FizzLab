@@ -62,6 +62,61 @@ const experimentData: Record<string, ExperimentData> = {
       "Adult supervision recommended",
       "Clean up spills immediately to prevent slipping"
     ]
+  },
+  "3": {
+    id: "3",
+    title: "Rainbow Milk",
+    description: "Create a stunning display of swirling colors in milk!",
+    materials: [
+      { name: "Whole Milk", amount: "1 cup", icon: "water-outline" },
+      { name: "Food Coloring", amount: "4 different colors", icon: "color-palette-outline" },
+      { name: "Dish Soap", amount: "1 drop", icon: "flask-outline" },
+      { name: "Cotton Swab", amount: "1", icon: "brush-outline" },
+      { name: "Shallow Plate", amount: "1", icon: "disc-outline" },
+    ],
+    steps: [
+      "Pour milk into the shallow plate",
+      "Add drops of different food colors",
+      "Dip cotton swab in dish soap",
+      "Touch the milk surface with the soap-dipped swab",
+      "Watch the colors dance!"
+    ],
+    safetyNotes: [
+      "Do not drink the milk mixture",
+      "Keep materials away from eyes",
+      "Clean spills immediately",
+      "Adult supervision recommended"
+    ]
+  },
+  "4": {
+    id: "4",
+    title: "Crystal Garden",
+    description: "Grow your own colorful crystal garden using household materials! This experiment teaches about supersaturated solutions and crystallization.",
+    materials: [
+      { name: "Epsom Salt", amount: "2 cups", icon: "flask-outline" },
+      { name: "Hot Water", amount: "2 cups", icon: "water-outline" },
+      { name: "Food Coloring", amount: "Various colors", icon: "color-palette-outline" },
+      { name: "Glass Jars", amount: "3-4", icon: "beaker-outline" },
+      { name: "Mixing Bowl", amount: "1", icon: "disc-outline" },
+      { name: "Measuring Cup", amount: "1", icon: "calculator-outline" },
+      { name: "Spoon", amount: "1", icon: "restaurant-outline" },
+    ],
+    steps: [
+      "Heat water until very hot (adult supervision required)",
+      "For each jar, mix 1/2 cup hot water with 1/2 cup Epsom salt",
+      "Stir until salt is completely dissolved",
+      "Add different food coloring to each jar",
+      "Place jars in a quiet spot where they won't be disturbed",
+      "Observe crystal formation over the next week",
+      "Document crystal growth each day"
+    ],
+    safetyNotes: [
+      "Adult supervision required for hot water",
+      "Be careful with glass containers",
+      "Do not disturb solutions while crystals are forming",
+      "Wash hands after handling materials",
+      "Keep materials away from young children"
+    ]
   }
 };
 
