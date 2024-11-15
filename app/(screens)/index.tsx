@@ -4,6 +4,7 @@ import { Link } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { getExperimentStatus } from '../utils/storage';
+import { useFocusEffect } from '@react-navigation/native';
 
 // Define the experiment type
 type Experiment = {
@@ -19,7 +20,12 @@ const experiments: Experiment[] = [
   { id: '2', title: 'Lava Lamp', image: require('../../assets/images/lava_lamp.jpeg'), difficulty: 'Medium', duration: '30 minutes' },
   { id: '3', title: 'Rainbow Milk', image: require('../../assets/images/rainbow_milk.jpeg'), difficulty: 'Easy', duration: '15 minutes' },
   { id: '4', title: 'Crystal Garden', image: require('../../assets/images/crystal_garden.jpeg'), difficulty: 'Hard', duration: '7 days' },
-  // Add more experiments here
+  { id: '5', title: 'Dancing Raisins', image: require('../../assets/images/dancing_raisins.jpeg'), difficulty: 'Easy', duration: '15 minutes' },
+  { id: '6', title: 'Invisible Ink', image: require('../../assets/images/invisible_ink.jpeg'), difficulty: 'Medium', duration: '30 minutes' },
+  { id: '7', title: 'Magnetic Slime', image: require('../../assets/images/magnetic_slime.jpeg'), difficulty: 'Hard', duration: '45 minutes' },
+  { id: '8', title: 'Cloud in a Jar', image: require('../../assets/images/cloud_jar.jpeg'), difficulty: 'Medium', duration: '20 minutes' },
+  { id: '9', title: 'Walking Water Rainbow', image: require('../../assets/images/water_rainbow.jpeg'), difficulty: 'Easy', duration: '30 minutes' },
+  { id: '10', title: 'DNA Extraction', image: require('../../assets/images/dna_extraction.jpeg'), difficulty: 'Hard', duration: '40 minutes' }
 ];
 
 // Removing unused type definition
@@ -27,20 +33,23 @@ const experiments: Experiment[] = [
 export default function HomeScreen() {
   const [completionStatus, setCompletionStatus] = useState<{[key: string]: boolean}>({});
 
-  useEffect(() => {
-    const loadCompletionStatus = async () => {
-      const statuses: {[key: string]: boolean} = {};
-      for (const exp of experiments) {
-        const status = await getExperimentStatus(exp.id);
-        statuses[exp.id] = status?.isCompleted || false;
-      }
-      setCompletionStatus(statuses);
-    };
-    loadCompletionStatus();
-  }, []);
+  const loadCompletionStatus = async () => {
+    const statuses: {[key: string]: boolean} = {};
+    for (const exp of experiments) {
+      const status = await getExperimentStatus(exp.id);
+      statuses[exp.id] = status?.isCompleted || false;
+    }
+    setCompletionStatus(statuses);
+  };
+
+  useFocusEffect(
+    React.useCallback(() => {
+      loadCompletionStatus();
+    }, [])
+  );
 
   // Get gradient colors based on difficulty
-  const getGradientColors = (difficulty: string) => {
+  const getGradientColors = (difficulty: string): [string, string] => {
     switch(difficulty.toLowerCase()) {
       case 'easy':
         return ['#4CAF50', '#81C784'];
