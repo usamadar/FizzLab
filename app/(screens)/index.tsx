@@ -16,16 +16,76 @@ type Experiment = {
 };
 
 const experiments: Experiment[] = [
-  { id: '1', title: 'Baking Soda & Vinegar', image: require('../../assets/images/baking_soda.jpeg'), difficulty: 'Easy', duration: '15 minutes' },
-  { id: '2', title: 'Lava Lamp', image: require('../../assets/images/lava_lamp.jpeg'), difficulty: 'Medium', duration: '30 minutes' },
-  { id: '3', title: 'Rainbow Milk', image: require('../../assets/images/rainbow_milk.jpeg'), difficulty: 'Easy', duration: '15 minutes' },
-  { id: '4', title: 'Crystal Garden', image: require('../../assets/images/crystal_garden.jpeg'), difficulty: 'Hard', duration: '7 days' },
-  { id: '5', title: 'Dancing Raisins', image: require('../../assets/images/dancing_raisins.jpeg'), difficulty: 'Easy', duration: '15 minutes' },
-  { id: '6', title: 'Invisible Ink', image: require('../../assets/images/invisible_ink.jpeg'), difficulty: 'Medium', duration: '30 minutes' },
-  { id: '7', title: 'Magnetic Slime', image: require('../../assets/images/magnetic_slime.jpeg'), difficulty: 'Hard', duration: '45 minutes' },
-  { id: '8', title: 'Cloud in a Jar', image: require('../../assets/images/cloud_jar.jpeg'), difficulty: 'Medium', duration: '20 minutes' },
-  { id: '9', title: 'Walking Water Rainbow', image: require('../../assets/images/water_rainbow.jpeg'), difficulty: 'Easy', duration: '30 minutes' },
-  { id: '10', title: 'DNA Extraction', image: require('../../assets/images/dna_extraction.jpeg'), difficulty: 'Hard', duration: '40 minutes' }
+  {
+    id: '1',
+    title: 'Baking Soda & Vinegar',
+    image: require('@/assets/images/baking_soda.jpeg'),
+    difficulty: 'Easy',
+    duration: '15 minutes'
+  },
+  {
+    id: '2', 
+    title: 'Lava Lamp',
+    image: require('@/assets/images/lava_lamp.jpeg'),
+    difficulty: 'Medium',
+    duration: '30 minutes'
+  },
+  {
+    id: '3',
+    title: 'Rainbow Milk', 
+    image: require('@/assets/images/rainbow_milk.jpeg'),
+    difficulty: 'Easy',
+    duration: '15 minutes'
+  },
+  {
+    id: '4',
+    title: 'Crystal Garden',
+    image: require('@/assets/images/crystal_garden.jpeg'),
+    difficulty: 'Hard', 
+    duration: '7 days'
+  },
+  {
+    id: '5',
+    title: 'Dancing Raisins',
+    image: require('@/assets/images/dancing_raisins.jpeg'),
+    difficulty: 'Easy',
+    duration: '15 minutes'
+  },
+  {
+    id: '6',
+    title: 'Invisible Ink',
+    image: require('@/assets/images/invisible_ink.jpeg'),
+    difficulty: 'Medium',
+    duration: '30 minutes'
+  },
+  {
+    id: '7',
+    title: 'Magnetic Slime',
+    image: require('@/assets/images/magnetic_slime.jpeg'),
+    difficulty: 'Hard',
+    duration: '45 minutes'
+  },
+  {
+    id: '8',
+    title: 'Cloud in a Jar',
+    image: require('@/assets/images/cloud_jar.jpeg'),
+    difficulty: 'Medium',
+    duration: '20 minutes'
+  },
+  {
+    id: '9',
+    title: 'Walking Water Rainbow',
+    image: require('@/assets/images/water_rainbow.jpeg'),
+    difficulty: 'Easy',
+    duration: '30 minutes'
+  },
+  {
+    id: '10',
+    title: 'DNA Extraction',
+    image: require('@/assets/images/dna_extraction.jpeg'),
+    difficulty: 'Hard',
+    duration: '40 minutes'
+  }
 ];
 
 // Removing unused type definition

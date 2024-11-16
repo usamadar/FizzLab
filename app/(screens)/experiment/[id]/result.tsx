@@ -100,7 +100,159 @@ const experimentResults: Record<string, {
       "Temperature affects crystal size and shape",
       "Many precious gems are naturally formed crystals"
     ]
-  }
+  },
+  "5": {
+    reaction: [
+      "When raisins are added to the vinegar and baking soda mixture:",
+      "• Bubbles form on the raisins' surface",
+      "• Raisins rise to the top of the liquid",
+      "• When bubbles pop, raisins sink back down",
+      "• This up-and-down motion continues until reaction slows"
+    ],
+    scientificExplanation: 
+      "This demonstrates both a chemical reaction and buoyancy! The baking soda and vinegar create carbon dioxide bubbles. These bubbles attach to the wrinkled surface of the raisins. When enough bubbles attach, they make the raisins buoyant enough to float. At the surface, the bubbles pop, making the raisins sink again until more bubbles attach.",
+    realWorldApplications: [
+      "Understanding how submarines control depth",
+      "Designing flotation devices",
+      "Gas-lift pumps in oil wells",
+      "Carbonation in beverage industry"
+    ],
+    funFacts: [
+      "Raisins work well because of their wrinkled surface",
+      "Fish use a similar principle with swim bladders",
+      "The same reaction helps make bread rise",
+      "Ancient sailors used bubbles to predict weather"
+    ]
+  },
+  "6": {
+    reaction: [
+      "When the lemon juice message is heated:",
+      "• The invisible writing slowly appears",
+      "• The color changes from clear to brown",
+      "• The revealed text becomes permanent",
+      "• Different heat levels affect darkness of text"
+    ],
+    scientificExplanation: 
+      "This demonstrates oxidation! Lemon juice contains carbon compounds that are colorless at room temperature. When heated, these compounds oxidize (react with oxygen in the air) and break down, turning brown. This is similar to how apples turn brown when cut and exposed to air.",
+    realWorldApplications: [
+      "Development of security features in documents",
+      "Forensic document analysis",
+      "Heat-sensitive safety indicators",
+      "Historical document preservation"
+    ],
+    funFacts: [
+      "This technique was used in the American Revolution for secret messages",
+      "Many other substances like milk or orange juice also work",
+      "Ancient Romans used similar invisible ink methods",
+      "Modern banknotes use advanced versions of this principle"
+    ]
+  },
+  "7": {
+    reaction: [
+      "When the magnetic slime is complete:",
+      "• Slime moves toward strong magnets",
+      "• It can be stretched and pulled by magnetic force",
+      "• The slime absorbs small magnetic objects",
+      "• It returns to normal shape when magnet is removed",
+      "• The slime appears metallic and shiny"
+    ],
+    scientificExplanation: 
+      "This demonstrates ferromagnetism and non-Newtonian fluids! The iron oxide particles in the slime are attracted to magnets. The slime itself is a non-Newtonian fluid, meaning it can act like both a liquid and a solid depending on the force applied. The borax and glue create a polymer structure that gives the slime its stretchy properties.",
+    realWorldApplications: [
+      "Magnetic fluid seals in electronics",
+      "Medical imaging contrast agents",
+      "Shock absorbers in vehicles",
+      "Smart materials in engineering",
+      "Spill cleanup technology"
+    ],
+    funFacts: [
+      "Similar magnetic fluids are used in some spacecraft",
+      "The first magnetic fluid was invented by NASA",
+      "Some animals can detect Earth's magnetic field",
+      "Magnetic slime is a type of 'smart material' that responds to its environment",
+      "Iron oxide is the same compound that makes rust"
+    ]
+  },
+  "8": {
+    reaction: [
+      "When the experiment is set up:",
+      "• Warm air rises to the top of the jar",
+      "• Water vapor forms when warm air hits cold plate",
+      "• Hairspray particles act as cloud seeds",
+      "• A visible cloud forms and swirls in the jar",
+      "• Cloud disappears when lid is removed"
+    ],
+    scientificExplanation: 
+      "This demonstrates the water cycle and cloud formation! When warm, moist air rises and meets cold temperatures, water vapor condenses around tiny particles (like hairspray) in the air. This is called condensation nucleation, and it's exactly how real clouds form in the atmosphere. The hairspray particles act just like dust and other particles in the sky.",
+    realWorldApplications: [
+      "Weather forecasting",
+      "Understanding climate patterns",
+      "Cloud seeding technology",
+      "Aviation weather planning",
+      "Atmospheric science research"
+    ],
+    funFacts: [
+      "An average cloud weighs around 1.1 million pounds",
+      "Clouds can travel at speeds over 100 miles per hour",
+      "There are 10 main types of clouds in the sky",
+      "Some clouds form at ground level - we call them fog",
+      "Cloud seeding is used to make rain in some countries"
+    ]
+  },
+  "9": {
+    reaction: [
+      "As the experiment progresses:",
+      "• Water begins climbing up the paper towels",
+      "• Colors travel along the paper bridges",
+      "• Empty glasses slowly fill with colored water",
+      "• New colors form where different colors meet",
+      "• Process continues until water levels equalize"
+    ],
+    scientificExplanation: 
+      "This demonstrates capillary action and color mixing! Water molecules are attracted to the paper towel fibers (adhesion) and to each other (cohesion). This allows the water to move up against gravity through the tiny spaces between the paper towel fibers. As different colored waters meet, they mix to create secondary colors, showing how primary colors combine.",
+    realWorldApplications: [
+      "Plant water transportation systems",
+      "Fabric and paper design",
+      "Soil water movement",
+      "Ink development for printers",
+      "Medical diagnostic tools"
+    ],
+    funFacts: [
+      "Trees use capillary action to transport water to their leaves",
+      "The same principle helps marker pens work",
+      "Ancient Egyptians used similar principles for irrigation",
+      "A single paper towel can lift water several inches high",
+      "This process happens naturally in soil after rain"
+    ]
+  },
+  "10": {
+    reaction: [
+      "During the extraction process:",
+      "• Soap breaks down cell membranes",
+      "• Salt helps DNA strands clump together",
+      "• Cold alcohol makes DNA precipitate",
+      "• White stringy DNA becomes visible",
+      "• DNA strands float between layers"
+    ],
+    scientificExplanation: 
+      "This experiment demonstrates DNA extraction from living cells! The dish soap breaks open cell membranes to release DNA, while salt helps neutralize DNA's negative charge, allowing it to clump together. When cold alcohol is added, DNA becomes insoluble and precipitates out of solution, making it visible to the naked eye.",
+    realWorldApplications: [
+      "Forensic science and crime solving",
+      "Genetic testing and research",
+      "Agricultural crop improvement",
+      "Medical diagnosis",
+      "Evolutionary biology studies",
+      "Biotechnology development"
+    ],
+    funFacts: [
+      "If stretched out, the DNA in one cell would be 6 feet long",
+      "Humans share 50% of their DNA with bananas",
+      "DNA was first isolated in 1869 by Friedrich Miescher",
+      "Your DNA could stretch to the sun and back 600 times",
+      "Scientists can now edit DNA using CRISPR technology",
+      "99.9% of human DNA is identical between people"
+    ]
+  },
 };
 
 export default function ExperimentResultScreen() {
