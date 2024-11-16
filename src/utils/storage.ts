@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ExperimentStore, ExperimentStatus } from '../types/experiments';
+import { ExperimentStore, ExperimentStatus } from '@/src/types/experiment';
 
 const STORAGE_KEY = '@experiment_status';
 

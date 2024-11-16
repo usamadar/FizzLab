@@ -3,8 +3,9 @@ import { View, Text, FlatList, TouchableOpacity, Image, StyleSheet, TextInput, S
 import { Link } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
-import { getExperimentStatus } from '../utils/storage';
+import { getExperimentStatus } from '@/src/utils/storage';
 import { useFocusEffect } from '@react-navigation/native';
+import { getExperimentsList } from '@/src/experiments';
 
 // Define the experiment type
 type Experiment = {
@@ -15,78 +16,27 @@ type Experiment = {
   duration: string;
 };
 
-const experiments: Experiment[] = [
-  {
-    id: '1',
-    title: 'Baking Soda & Vinegar',
-    image: require('@/assets/images/baking_soda.jpeg'),
-    difficulty: 'Easy',
-    duration: '15 minutes'
-  },
-  {
-    id: '2', 
-    title: 'Lava Lamp',
-    image: require('@/assets/images/lava_lamp.jpeg'),
-    difficulty: 'Medium',
-    duration: '30 minutes'
-  },
-  {
-    id: '3',
-    title: 'Rainbow Milk', 
-    image: require('@/assets/images/rainbow_milk.jpeg'),
-    difficulty: 'Easy',
-    duration: '15 minutes'
-  },
-  {
-    id: '4',
-    title: 'Crystal Garden',
-    image: require('@/assets/images/crystal_garden.jpeg'),
-    difficulty: 'Hard', 
-    duration: '7 days'
-  },
-  {
-    id: '5',
-    title: 'Dancing Raisins',
-    image: require('@/assets/images/dancing_raisins.jpeg'),
-    difficulty: 'Easy',
-    duration: '15 minutes'
-  },
-  {
-    id: '6',
-    title: 'Invisible Ink',
-    image: require('@/assets/images/invisible_ink.jpeg'),
-    difficulty: 'Medium',
-    duration: '30 minutes'
-  },
-  {
-    id: '7',
-    title: 'Magnetic Slime',
-    image: require('@/assets/images/magnetic_slime.jpeg'),
-    difficulty: 'Hard',
-    duration: '45 minutes'
-  },
-  {
-    id: '8',
-    title: 'Cloud in a Jar',
-    image: require('@/assets/images/cloud_jar.jpeg'),
-    difficulty: 'Medium',
-    duration: '20 minutes'
-  },
-  {
-    id: '9',
-    title: 'Walking Water Rainbow',
-    image: require('@/assets/images/water_rainbow.jpeg'),
-    difficulty: 'Easy',
-    duration: '30 minutes'
-  },
-  {
-    id: '10',
-    title: 'DNA Extraction',
-    image: require('@/assets/images/dna_extraction.jpeg'),
-    difficulty: 'Hard',
-    duration: '40 minutes'
+const experiments = getExperimentsList().sort((a, b) => {
+  const difficultyOrder = {
+    'Easy': 1,
+    'Medium': 2,
+    'Hard': 3
+  };
+  
+  // First compare by difficulty
+  const difficultyComparison = difficultyOrder[a.difficulty] - difficultyOrder[b.difficulty];
+  
+  // If same difficulty, compare by ID
+  if (difficultyComparison === 0) {
+    return parseInt(a.id) - parseInt(b.id);
   }
-];
+  
+  return difficultyComparison;
+});
+
+// Add this near the top of the file
+const completedExperimentsCount = (statuses: {[key: string]: boolean}) => 
+  Object.values(statuses).filter(status => status).length;
 
 // Removing unused type definition
 
@@ -125,7 +75,34 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.heroSection}>
-        <Text style={styles.subtitle}>Discover the magic of science through fun experiments! 🧪</Text>
+        <LinearGradient
+          colors={['#6366F1', '#8B5CF6']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={styles.heroGradient}
+        >
+          <View style={styles.heroContent}>
+            <View style={styles.heroTextContainer}>
+              <Text style={styles.heroTitle}>Ready to get Fizzical?</Text>
+              <Text style={styles.heroSubtitle}>
+                Discover the magic of science through fun experiments! 🧪
+              </Text>
+            </View>
+            <View style={styles.statsContainer}>
+              <View style={styles.statItem}>
+                <Text style={styles.statNumber}>
+                  {completedExperimentsCount(completionStatus)}
+                </Text>
+                <Text style={styles.statLabel}>Completed</Text>
+              </View>
+              <View style={styles.statDivider} />
+              <View style={styles.statItem}>
+                <Text style={styles.statNumber}>{experiments.length}</Text>
+                <Text style={styles.statLabel}>Total</Text>
+              </View>
+            </View>
+          </View>
+        </LinearGradient>
       </View>
       <FlatList
         contentContainerStyle={styles.listContainer}
@@ -188,19 +165,61 @@ const styles = StyleSheet.create({
   },
   heroSection: {
     marginBottom: 20,
-    backgroundColor: '#fff',
-    padding: 16,
     borderRadius: 16,
+    overflow: 'hidden',
     elevation: 3,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
   },
-  subtitle: {
+  heroGradient: {
+    width: '100%',
+  },
+  heroContent: {
+    padding: 20,
+  },
+  heroTextContainer: {
+    marginBottom: 16,
+  },
+  heroTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#fff',
+    marginBottom: 8,
+  },
+  heroSubtitle: {
     fontSize: 16,
-    color: '#666',
+    color: 'rgba(255, 255, 255, 0.9)',
     lineHeight: 22,
+  },
+  statsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    borderRadius: 12,
+    padding: 12,
+  },
+  statItem: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  statNumber: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#fff',
+  },
+  statLabel: {
+    fontSize: 14,
+    color: 'rgba(255, 255, 255, 0.9)',
+    marginTop: 4,
+  },
+  statDivider: {
+    width: 1,
+    height: 30,
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    marginHorizontal: 16,
   },
   listContainer: {
     paddingBottom: 20,
