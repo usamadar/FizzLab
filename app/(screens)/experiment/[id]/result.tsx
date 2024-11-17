@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { getExperimentResults } from '@/src/experiments';
@@ -28,6 +28,10 @@ export default function ResultScreen() {
     );
   }
 
+  const handleConceptPress = (wikiLink: string) => {
+    Linking.openURL(wikiLink);
+  };
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.content}>
@@ -48,6 +52,21 @@ export default function ResultScreen() {
           <View style={styles.explanationCard}>
             <Text style={styles.explanationText}>{results.scientificExplanation}</Text>
           </View>
+          
+          {results.keyScientificConcepts && (
+            <View style={styles.conceptsContainer}>
+              {results.keyScientificConcepts.map((concept, index) => (
+                <TouchableOpacity
+                  key={index}
+                  style={styles.conceptTag}
+                  onPress={() => handleConceptPress(concept.wikiLink)}
+                >
+                  <Ionicons name="link" size={16} color="#007AFF" />
+                  <Text style={styles.conceptText}>{concept.name}</Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          )}
         </View>
 
         <View style={styles.section}>
@@ -158,5 +177,27 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     marginTop: 20,
-  }
+  },
+  conceptsContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginTop: 12,
+    gap: 8,
+  },
+  conceptTag: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#E3F2FD',
+    paddingHorizontal: 5,
+    paddingVertical: 6,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: '#007AFF',
+  },
+  conceptText: {
+    color: '#007AFF',
+    marginLeft: 4,
+    fontSize: 14,
+    fontWeight: '500',
+  },
 });

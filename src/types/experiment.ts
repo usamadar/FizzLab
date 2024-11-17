@@ -21,6 +21,10 @@ export type Material = {
     scientificExplanation: string;
     realWorldApplications: string[];
     funFacts: string[];
+    keyScientificConcepts?: {
+      name: string;
+      wikiLink: string;
+    }[];
   };
   
   export type CompleteExperiment = ExperimentData & {

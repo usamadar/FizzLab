@@ -56,26 +56,26 @@ const experiment: CompleteExperiment = {
       "Ancient Egyptians used similar principles for irrigation",
       "A single paper towel can lift water several inches high",
       "This process happens naturally in soil after rain"
+    ],
+    keyScientificConcepts: [
+      {
+        name: "Capillary Action",
+        wikiLink: "https://en.wikipedia.org/wiki/Capillary_action"
+      },
+      {
+        name: "Adhesion",
+        wikiLink: "https://en.wikipedia.org/wiki/Adhesion"
+      },
+      {
+        name: "Cohesion",
+        wikiLink: "https://en.wikipedia.org/wiki/Cohesion_(chemistry)"
+      },
+      {
+        name: "Color Theory",
+        wikiLink: "https://en.wikipedia.org/wiki/Color_theory"
+      }
     ]
-  },
-  keyScientificConcepts: [
-    {
-      name: "Capillary Action",
-      wikiLink: "https://en.wikipedia.org/wiki/Capillary_action"
-    },
-    {
-      name: "Adhesion",
-      wikiLink: "https://en.wikipedia.org/wiki/Adhesion"
-    },
-    {
-      name: "Cohesion",
-      wikiLink: "https://en.wikipedia.org/wiki/Cohesion_(chemistry)"
-    },
-    {
-      name: "Color Theory",
-      wikiLink: "https://en.wikipedia.org/wiki/Color_theory"
-    }
-  ]
+  }
 };
 
 export default experiment;

@@ -50,26 +50,27 @@ const experiment: CompleteExperiment = {
       "This principle helps soap clean dishes",
       "Similar effects occur in cloud formation",
       "Artists use this technique in paper marbling"
+    ],
+    keyScientificConcepts: [
+      {
+        name: "Surface Tension",
+        wikiLink: "https://en.wikipedia.org/wiki/Surface_tension"
+      },
+      {
+        name: "Molecular Polarity",
+        wikiLink: "https://en.wikipedia.org/wiki/Chemical_polarity"
+      },
+      {
+        name: "Emulsion",
+        wikiLink: "https://en.wikipedia.org/wiki/Emulsion"
+      },
+      {
+        name: "Fluid Dynamics",
+        wikiLink: "https://en.wikipedia.org/wiki/Fluid_dynamics"
+      }
     ]
-  },
-  keyScientificConcepts: [
-    {
-      name: "Surface Tension",
-      wikiLink: "https://en.wikipedia.org/wiki/Surface_tension"
-    },
-    {
-      name: "Molecular Polarity",
-      wikiLink: "https://en.wikipedia.org/wiki/Chemical_polarity"
-    },
-    {
-      name: "Emulsion",
-      wikiLink: "https://en.wikipedia.org/wiki/Emulsion"
-    },
-    {
-      name: "Fluid Dynamics",
-      wikiLink: "https://en.wikipedia.org/wiki/Fluid_dynamics"
-    }
-  ]
+  }
+
 };
 
 export default experiment;
