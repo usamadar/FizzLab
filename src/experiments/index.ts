@@ -1,28 +1,25 @@
-import experiment1 from './data/experiment1';
-import experiment2 from './data/experiment2';
-import experiment3 from './data/experiment3';
-import experiment4 from './data/experiment4';
-import experiment5 from './data/experiment5';
-import experiment6 from './data/experiment6';
-import experiment7 from './data/experiment7';
-import experiment8 from './data/experiment8';
-import experiment9 from './data/experiment9';
-import experiment10 from './data/experiment10';
-// Import other experiments as they're created
+import bakingSodaAndVinegar from './data/baking-soda-and-vinegar';
+import lavaLamp from './data/lava-lamp';
+import rainbowMilk from './data/rainbow-milk';
+import crystalGarden from './data/crystal-garden';
+import dancingRaisins from './data/dancing-raisins';
+import invisibleInk from './data/invisible-ink';
+import magneticSlime from './data/magnetic-slime';
+import cloudInAJar from './data/cloud-in-a-jar';
+import waterRainbow from './data/water-rainbow';
+import strawberryDnaExtraction from './data/strawberry-dna-extraction';
 
 export const experiments = [
-  experiment1,
-  experiment2,
-  experiment3,
-  experiment4,
-  experiment5,
-  experiment6,
-  experiment7,
-  experiment8,
-  experiment9,
-  experiment10
-
-  // Add other experiments
+  bakingSodaAndVinegar,
+  lavaLamp,
+  rainbowMilk,
+  crystalGarden,
+  dancingRaisins,
+  invisibleInk,
+  magneticSlime,
+  cloudInAJar,
+  waterRainbow,
+  strawberryDnaExtraction
 ];
 
 export const getExperiment = (id: string) => 
