@@ -1,7 +1,8 @@
 import React from 'react';
-import { Modal, View, Text, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
+import { Modal, View, Text, ScrollView, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialInfo } from '@/src/types/material';
+import { useState } from 'react';
 
 interface MaterialInfoModalProps {
   material: MaterialInfo;
@@ -10,6 +11,8 @@ interface MaterialInfoModalProps {
 }
 
 export function MaterialInfoModal({ material, visible, onClose }: MaterialInfoModalProps) {
+  const [imageError, setImageError] = useState(false);
+
   return (
     <Modal
       animationType="slide"
@@ -25,6 +28,18 @@ export function MaterialInfoModal({ material, visible, onClose }: MaterialInfoMo
 
           <ScrollView>
             <Text style={styles.materialName}>{material.name}</Text>
+            {material.imageUrl && !imageError && (
+              <Image 
+                source={
+                  typeof material.imageUrl === 'string' 
+                    ? { uri: material.imageUrl } 
+                    : material.imageUrl
+                } 
+                style={styles.materialImage}
+                resizeMode="contain"
+                onError={() => setImageError(true)}
+              />
+            )}
             <Text style={styles.description}>{material.description}</Text>
 
             <View style={styles.section}>
@@ -117,5 +132,11 @@ const styles = StyleSheet.create({
   whereToFind: {
     fontSize: 16,
     color: '#666',
+  },
+  materialImage: {
+    width: '100%',
+    height: 200,
+    marginBottom: 20,
+    borderRadius: 10,
   },
 }); 

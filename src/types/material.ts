@@ -4,7 +4,7 @@ export interface MaterialInfo {
   description: string;
   commonUses: string[];
   alternatives?: string[];
-  imageUrl: string;
+  imageUrl?: string;
   category: 'chemical' | 'equipment' | 'household';
   whereToFind: string;
   tips?: string[];

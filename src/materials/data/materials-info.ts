@@ -12,7 +12,7 @@ export const materialsData: Record<string, MaterialInfo> = {
       'Therapeutic foot soaks'
     ],
     alternatives: ['Table salt (but results will differ)', 'Sea salt'],
-    imageUrl: 'https://example.com/epsom-salt.jpg',
+    imageUrl: require('@/assets/images/materials/epsom_salt.png'),
     category: 'chemical',
     whereToFind: 'Available in pharmacies, grocery stores in the health/beauty section',
     tips: [
@@ -33,7 +33,7 @@ export const materialsData: Record<string, MaterialInfo> = {
       'Industrial applications'
     ],
     alternatives: ['Magnetic sand', 'Iron filings (but must be very fine)'],
-    imageUrl: 'https://example.com/iron-oxide.jpg',
+    imageUrl: require('@/assets/images/materials/iron_oxide_powder.png'),
     category: 'chemical',
     whereToFind: 'Art supply stores, online retailers, or science supply stores',
     tips: [
@@ -54,7 +54,7 @@ export const materialsData: Record<string, MaterialInfo> = {
       'Pest control'
     ],
     alternatives: ['Contact lens solution containing boric acid', 'Liquid starch'],
-    imageUrl: 'https://example.com/borax.jpg',
+    imageUrl: require('@/assets/images/materials/borax.png'),
     category: 'chemical',
     whereToFind: 'Laundry aisle of grocery stores, often labeled as "20 Mule Team Borax"',
     tips: [
@@ -75,7 +75,7 @@ export const materialsData: Record<string, MaterialInfo> = {
       'Cleaning solution when dissolved'
     ],
     alternatives: ['Baking soda and citric acid mixture', 'Effervescent vitamin tablets'],
-    imageUrl: 'https://example.com/alka-seltzer.jpg',
+    imageUrl: require('@/assets/images/materials/alka_seltzer.png'),
     category: 'chemical',
     whereToFind: 'Pharmacy section of grocery stores or drugstores',
     tips: [
@@ -96,7 +96,6 @@ export const materialsData: Record<string, MaterialInfo> = {
       'Scientific experiments'
     ],
     alternatives: ['91% isopropyl alcohol (preferred for DNA extraction)', '70% isopropyl alcohol'],
-    imageUrl: 'https://example.com/rubbing-alcohol.jpg',
     category: 'chemical',
     whereToFind: 'Pharmacy section of grocery stores or drugstores',
     tips: [
@@ -117,7 +116,7 @@ export const materialsData: Record<string, MaterialInfo> = {
       'Scientific demonstrations'
     ],
     alternatives: ['Regular magnets (less effective)'],
-    imageUrl: 'https://example.com/neodymium-magnet.jpg',
+    imageUrl: require('@/assets/images/materials/strong_neodymium_magnet.png'),
     category: 'equipment',
     whereToFind: 'Online retailers, hardware stores, or science supply stores',
     tips: [
