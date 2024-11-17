@@ -104,6 +104,27 @@ export const materialsData: Record<string, MaterialInfo> = {
       'Keep away from heat sources',
       'Store in a cool, dark place'
     ]
+  },
+
+  strong_neodymium_magnet: {
+    id: 'strong_neodymium_magnet',
+    name: 'Strong Neodymium Magnet',
+    description: 'A powerful rare-earth magnet used in various scientific experiments and industrial applications.',
+    commonUses: [
+      'Magnetic slime experiments',
+      'Industrial machinery',
+      'Magnetic therapy',
+      'Scientific demonstrations'
+    ],
+    alternatives: ['Regular magnets (less effective)'],
+    imageUrl: 'https://example.com/neodymium-magnet.jpg',
+    category: 'equipment',
+    whereToFind: 'Online retailers, hardware stores, or science supply stores',
+    tips: [
+      'Handle with care to avoid pinching fingers',
+      'Keep away from electronics and credit cards',
+      'Store in a safe place away from children'
+    ]
   }
 };
 
