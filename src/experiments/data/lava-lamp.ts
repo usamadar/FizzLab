@@ -12,7 +12,7 @@ const experiment: CompleteExperiment = {
     { name: "Water", amount: "2 cups", icon: "water-outline" },
     { name: "Vegetable Oil", amount: "1 cup", icon: "beaker-outline" },
     { name: "Food Coloring", amount: "10-15 drops", icon: "color-palette-outline" },
-    { name: "Alka-Seltzer Tablet", amount: "1 tablet", icon: "tablet-portrait-outline" },
+    { name: "Alka-Seltzer", amount: "1 tablet", icon: "tablet-portrait-outline" },
     { name: "Flashlight", amount: "1", icon: "flashlight-outline" },
   ],
   steps: [

@@ -4,6 +4,9 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { getExperimentStatus, resetExperimentStatus } from '@/src/utils/storage';
 import { getExperiment } from '@/src/experiments';
+import { materialsData } from '@/src/materials/data/materials-info';
+import { MaterialInfoModal } from '@/src/components/modals/MaterialInfoModal';
+import { MaterialInfo } from '@/src/types/material';
 
 export default function ExperimentDetailScreen() {
   const { id } = useLocalSearchParams();
@@ -12,6 +15,8 @@ export default function ExperimentDetailScreen() {
   const [stepComplete, setStepComplete] = useState<number>(0);
   const [isCompleted, setIsCompleted] = useState(false);
   const [lastCompletedAt, setLastCompletedAt] = useState<Date | null>(null);
+  const [selectedMaterial, setSelectedMaterial] = useState<MaterialInfo | null>(null);
+  const [modalVisible, setModalVisible] = useState(false);
   
   useEffect(() => {
     const checkCompletionStatus = async () => {
@@ -25,6 +30,11 @@ export default function ExperimentDetailScreen() {
     };
     checkCompletionStatus();
   }, [id]);
+
+  const getMaterialInfo = (materialName: string): MaterialInfo | null => {
+    const materialId = materialName.toLowerCase().replace(/[\s-]/g, '_');
+    return materialsData[materialId] || null;
+  };
 
   if (!experiment) {
     return <View style={styles.container}><Text>Experiment not found</Text></View>;
@@ -87,15 +97,35 @@ export default function ExperimentDetailScreen() {
 
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Materials Needed:</Text>
-          {experiment.materials.map((material, index) => (
-            <View key={index} style={styles.materialItem}>
-              <Ionicons name={material.icon as any} size={24} color="#007AFF" />
-              <View style={styles.materialText}>
-                <Text style={styles.materialName}>{material.name}</Text>
-                <Text style={styles.materialAmount}>{material.amount}</Text>
-              </View>
-            </View>
-          ))}
+          {experiment.materials.map((material, index) => {
+            const materialInfo = getMaterialInfo(material.name);
+            return (
+              <TouchableOpacity
+                key={index}
+                style={[
+                  styles.materialItem,
+                  materialInfo && styles.materialItemWithInfo
+                ]}
+                onPress={() => {
+                  if (materialInfo) {
+                    setSelectedMaterial(materialInfo);
+                    setModalVisible(true);
+                  }
+                }}
+              >
+                <Ionicons name={material.icon as any} size={24} color="#007AFF" />
+                <View style={styles.materialText}>
+                  <Text style={styles.materialName}>
+                    {material.name}
+                    {materialInfo && (
+                      <Ionicons name="information-circle" size={16} color="#007AFF" />
+                    )}
+                  </Text>
+                  <Text style={styles.materialAmount}>{material.amount}</Text>
+                </View>
+              </TouchableOpacity>
+            );
+          })}
         </View>
 
         <View style={styles.section}>
@@ -135,6 +165,16 @@ export default function ExperimentDetailScreen() {
           </Text>
         </TouchableOpacity>
       </View>
+      {selectedMaterial && (
+        <MaterialInfoModal
+          material={selectedMaterial}
+          visible={modalVisible}
+          onClose={() => {
+            setModalVisible(false);
+            setSelectedMaterial(null);
+          }}
+        />
+      )}
     </ScrollView>
   );
 }
@@ -258,5 +298,9 @@ const styles = StyleSheet.create({
   },
   tertiaryButtonText: {
     color: '#333',
+  },
+  materialItemWithInfo: {
+    borderColor: '#007AFF',
+    borderWidth: 1,
   },
 }); 
