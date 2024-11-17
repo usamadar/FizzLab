@@ -56,7 +56,25 @@ const experiment: CompleteExperiment = {
       "This principle is used in salad dressings - that's why you have to shake them!",
       "The same concept helps explain why some stains are hard to clean with just water"
     ]
-  }
+  },
+  keyScientificConcepts: [
+    {
+      name: "Density",
+      wikiLink: "https://en.wikipedia.org/wiki/Density"
+    },
+    {
+      name: "Polarity",
+      wikiLink: "https://en.wikipedia.org/wiki/Chemical_polarity"
+    },
+    {
+      name: "Carbon Dioxide",
+      wikiLink: "https://en.wikipedia.org/wiki/Carbon_dioxide"
+    },
+    {
+      name: "Immiscible Liquids",
+      wikiLink: "https://en.wikipedia.org/wiki/Immiscible_liquids"
+    }
+  ]
 };
 
 export default experiment;

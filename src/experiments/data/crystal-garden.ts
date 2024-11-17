@@ -56,7 +56,25 @@ const experiment: CompleteExperiment = {
       "The same process forms stalactites in caves",
       "Scientists use crystal growth to study materials in space"
     ]
-  }
+  },
+  keyScientificConcepts: [
+    {
+      name: "Crystallization",
+      wikiLink: "https://en.wikipedia.org/wiki/Crystallization"
+    },
+    {
+      name: "Supersaturation",
+      wikiLink: "https://en.wikipedia.org/wiki/Supersaturation"
+    },
+    {
+      name: "Evaporation",
+      wikiLink: "https://en.wikipedia.org/wiki/Evaporation"
+    },
+    {
+      name: "Crystal Structure",
+      wikiLink: "https://en.wikipedia.org/wiki/Crystal_structure"
+    }
+  ]
 };
 
 export default experiment;

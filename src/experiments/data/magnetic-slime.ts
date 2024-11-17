@@ -62,7 +62,25 @@ const experiment: CompleteExperiment = {
       "Magnetic slime is a type of 'smart material' that responds to its environment",
       "Iron oxide is the same compound that makes rust"
     ]
-  }
+  },
+  keyScientificConcepts: [
+    {
+      name: "Ferromagnetism",
+      wikiLink: "https://en.wikipedia.org/wiki/Ferromagnetism"
+    },
+    {
+      name: "Non-Newtonian Fluid",
+      wikiLink: "https://en.wikipedia.org/wiki/Non-Newtonian_fluid"
+    },
+    {
+      name: "Polymers",
+      wikiLink: "https://en.wikipedia.org/wiki/Polymer"
+    },
+    {
+      name: "Magnetism",
+      wikiLink: "https://en.wikipedia.org/wiki/Magnetism"
+    }
+  ]
 };
 
 export default experiment;
