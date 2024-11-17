@@ -5,6 +5,12 @@ import { Ionicons } from '@expo/vector-icons';
 import { getExperimentResults } from '@/src/experiments';
 import { setExperimentStatus } from '@/src/utils/storage';
 
+const chunk = <T,>(arr: T[], size: number): T[][] => {
+  return Array.from({ length: Math.ceil(arr.length / size) }, (_, i) =>
+    arr.slice(i * size, i * size + size)
+  );
+};
+
 export default function ResultScreen() {
   const { id } = useLocalSearchParams();
   const router = useRouter();
@@ -55,15 +61,22 @@ export default function ResultScreen() {
           
           {results.keyScientificConcepts && (
             <View style={styles.conceptsContainer}>
-              {results.keyScientificConcepts.map((concept, index) => (
-                <TouchableOpacity
-                  key={index}
-                  style={styles.conceptTag}
-                  onPress={() => handleConceptPress(concept.wikiLink)}
-                >
-                  <Ionicons name="link" size={16} color="#007AFF" />
-                  <Text style={styles.conceptText}>{concept.name}</Text>
-                </TouchableOpacity>
+              {chunk(results.keyScientificConcepts, 2).map((pair, rowIndex) => (
+                <View key={rowIndex} style={styles.conceptRow}>
+                  {pair.map((concept, index) => (
+                    <TouchableOpacity
+                      key={index}
+                      style={styles.conceptTag}
+                      onPress={() => handleConceptPress(concept.wikiLink)}
+                    >
+                      <View style={styles.conceptContent}>
+                        <Ionicons name="link" size={16} color="#007AFF" />
+                        <Text style={styles.conceptText}>{concept.name}</Text>
+                      </View>
+                    </TouchableOpacity>
+                  ))}
+                  {pair.length === 1 && <View style={styles.conceptTag} />}
+                </View>
               ))}
             </View>
           )}
@@ -179,25 +192,33 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   conceptsContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
     marginTop: 12,
-    gap: 8,
+  },
+  conceptRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 8,
   },
   conceptTag: {
-    flexDirection: 'row',
-    alignItems: 'center',
     backgroundColor: '#E3F2FD',
-    paddingHorizontal: 5,
+    paddingHorizontal: 8,
     paddingVertical: 6,
     borderRadius: 16,
     borderWidth: 1,
     borderColor: '#007AFF',
+    width: '48%',
+    justifyContent: 'center',
+  },
+  conceptContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   conceptText: {
     color: '#007AFF',
     marginLeft: 4,
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: '500',
+    textAlign: 'center',
   },
 });
