@@ -16,7 +16,7 @@ const experiment: CompleteExperiment = {
   ],
   steps: [
     "Line up 7 glasses in a row",
-    "Fill alternate glasses with water (1,3,5,7)",
+    "Using measuring cup, fill alternate glasses with water (1,3,5,7)",
     "Add different food coloring to each filled glass",
     "Fold paper towels into long strips",
     "Create bridges between glasses with paper towels",

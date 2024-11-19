@@ -17,7 +17,7 @@ const experiment: CompleteExperiment = {
   ],
   steps: [
     "Dissolve Epsom salt in hot water in the mixing bowl",
-    "Stir until no crystals remain visible",
+    "Using spoon, stir until no crystals remain visible",
     "Divide solution into smaller portions",
     "Add different food coloring to each portion",
     "Pour the solutions into your glass container",

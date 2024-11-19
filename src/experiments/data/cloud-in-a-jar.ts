@@ -20,6 +20,7 @@ const experiment: CompleteExperiment = {
     "Pour hot water into the jar (about 1 inch)",
     "Place metal plate on top of jar",
     "Put ice cubes on the plate",
+    "Place dark paper behind jar for better visibility",
     "Wait 20 seconds for temperature difference",
     "Remove plate briefly and spray hairspray into jar",
     "Quickly replace the plate with ice",

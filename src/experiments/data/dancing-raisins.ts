@@ -10,8 +10,7 @@ const experiment: CompleteExperiment = {
   materials: [
     { name: "Clear Carbonated Water", amount: "2 cups", icon: "water-outline" },
     { name: "Raisins", amount: "10-12", icon: "nutrition-outline" },
-    { name: "Tall Clear Glass", amount: "1", icon: "beer-outline" },
-    { name: "Spoon", amount: "1", icon: "restaurant-outline" }
+    { name: "Tall Clear Glass", amount: "1", icon: "beer-outline" }
   ],
   steps: [
     "Pour the carbonated water into the tall glass",
