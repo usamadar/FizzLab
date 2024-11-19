@@ -59,7 +59,7 @@ export function MaterialInfoModal({ material, visible, onClose }: MaterialInfoMo
 
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>Tips:</Text>
-              {material.tips.map((tip, index) => (
+              {(material.tips ?? []).map((tip, index) => (
                 <View key={index} style={styles.listItem}>
                   <Ionicons name="bulb-outline" size={20} color="#FFA000" />
                   <Text style={styles.listText}>{tip}</Text>
@@ -67,10 +67,10 @@ export function MaterialInfoModal({ material, visible, onClose }: MaterialInfoMo
               ))}
             </View>
 
-            {material.alternatives.length > 0 && (
+            {(material.alternatives ?? []).length > 0 && (
               <View style={styles.section}>
                 <Text style={styles.sectionTitle}>Alternatives:</Text>
-                {material.alternatives.map((alt, index) => (
+                {(material.alternatives ?? []).map((alt, index) => (
                   <View key={index} style={styles.listItem}>
                     <Ionicons name="swap-horizontal" size={20} color="#2196F3" />
                     <Text style={styles.listText}>{alt}</Text>
