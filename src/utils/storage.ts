@@ -28,6 +28,21 @@ export const setExperimentStatus = async (experimentId: string, status: Experime
   }
 };
 
+export const updateExperimentSteps = async (experimentId: string, completedSteps: number[]) => {
+  try {
+    const data = await AsyncStorage.getItem(STORAGE_KEY);
+    const store: ExperimentStore = data ? JSON.parse(data) : {};
+    const currentStatus = store[experimentId] || { isCompleted: false, completedSteps: [] };
+    store[experimentId] = {
+      ...currentStatus,
+      completedSteps
+    };
+    await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+  } catch (error) {
+    console.error('Error updating experiment steps:', error);
+  }
+};
+
 export const resetExperimentStatus = async (experimentId: string) => {
   try {
     const data = await AsyncStorage.getItem(STORAGE_KEY);

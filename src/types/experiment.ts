@@ -34,6 +34,7 @@ export type Material = {
   export type ExperimentStatus = {
     isCompleted: boolean;
     lastCompletedAt?: Date;
+    completedSteps: number[];
   };
   
   export type ExperimentStore = {

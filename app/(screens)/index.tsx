@@ -6,6 +6,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { getExperimentStatus } from '@/src/utils/storage';
 import { useFocusEffect } from '@react-navigation/native';
 import { getExperimentsList } from '@/src/experiments';
+import { ExperimentStatus } from '@/src/types/experiment';
 
 // Define the experiment type
 type Experiment = {
@@ -40,14 +41,29 @@ const completedExperimentsCount = (statuses: {[key: string]: boolean}) =>
 
 // Removing unused type definition
 
+const getExperimentStats = (statuses: {[key: string]: ExperimentStatus}) => {
+  let completed = 0;
+  let inProgress = 0;
+  
+  Object.values(statuses).forEach(status => {
+    if (status.isCompleted) {
+      completed++;
+    } else if (status.completedSteps?.length > 0) {
+      inProgress++;
+    }
+  });
+  
+  return { completed, inProgress };
+};
+
 export default function HomeScreen() {
-  const [completionStatus, setCompletionStatus] = useState<{[key: string]: boolean}>({});
+  const [completionStatus, setCompletionStatus] = useState<{[key: string]: ExperimentStatus}>({});
 
   const loadCompletionStatus = async () => {
-    const statuses: {[key: string]: boolean} = {};
+    const statuses: {[key: string]: ExperimentStatus} = {};
     for (const exp of experiments) {
       const status = await getExperimentStatus(exp.id);
-      statuses[exp.id] = status?.isCompleted || false;
+      statuses[exp.id] = status || { isCompleted: false, completedSteps: [] };
     }
     setCompletionStatus(statuses);
   };
@@ -91,9 +107,16 @@ export default function HomeScreen() {
             <View style={styles.statsContainer}>
               <View style={styles.statItem}>
                 <Text style={styles.statNumber}>
-                  {completedExperimentsCount(completionStatus)}
+                  {getExperimentStats(completionStatus).completed}
                 </Text>
                 <Text style={styles.statLabel}>Completed</Text>
+              </View>
+              <View style={styles.statDivider} />
+              <View style={styles.statItem}>
+                <Text style={styles.statNumber}>
+                  {getExperimentStats(completionStatus).inProgress}
+                </Text>
+                <Text style={styles.statLabel}>In Progress</Text>
               </View>
               <View style={styles.statDivider} />
               <View style={styles.statItem}>
@@ -138,12 +161,21 @@ export default function HomeScreen() {
                       {item.duration}
                     </Text>
                   </View>
-                  {completionStatus[item.id] && (
+                  {completionStatus[item.id]?.isCompleted && (
                     <View style={styles.completionBadge}>
                       <Ionicons 
                         name="checkmark-circle" 
                         size={24} 
                         color="#4CAF50" 
+                      />
+                    </View>
+                  )}
+                  {!completionStatus[item.id]?.isCompleted && completionStatus[item.id]?.completedSteps?.length > 0 && (
+                    <View style={styles.inProgressBadge}>
+                      <Ionicons 
+                        name="time" 
+                        size={24} 
+                        color="#FF9800" 
                       />
                     </View>
                   )}
@@ -211,7 +243,7 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   statLabel: {
-    fontSize: 14,
+    fontSize: 12,
     color: 'rgba(255, 255, 255, 0.9)',
     marginTop: 4,
   },
@@ -275,6 +307,14 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   completionBadge: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
+    backgroundColor: 'rgba(255,255,255,0.9)',
+    borderRadius: 12,
+    padding: 4,
+  },
+  inProgressBadge: {
     position: 'absolute',
     top: 10,
     right: 10,

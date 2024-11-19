@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
-import { getExperimentStatus, resetExperimentStatus } from '@/src/utils/storage';
+import { getExperimentStatus, resetExperimentStatus, updateExperimentSteps } from '@/src/utils/storage';
 import { getExperiment } from '@/src/experiments';
 import { materialsData } from '@/src/materials/data/materials-info';
 import { MaterialInfoModal } from '@/src/components/modals/MaterialInfoModal';
@@ -17,6 +17,7 @@ export default function ExperimentDetailScreen() {
   const [lastCompletedAt, setLastCompletedAt] = useState<Date | null>(null);
   const [selectedMaterial, setSelectedMaterial] = useState<MaterialInfo | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
+  const [completedSteps, setCompletedSteps] = useState<number[]>([]);
   
   useEffect(() => {
     const checkCompletionStatus = async () => {
@@ -27,6 +28,10 @@ export default function ExperimentDetailScreen() {
           setLastCompletedAt(new Date(status.lastCompletedAt));
         }
       }
+      if (status?.completedSteps) {
+        setCompletedSteps(status.completedSteps);
+        setStepComplete(status.completedSteps.length);
+      }
     };
     checkCompletionStatus();
   }, [id]);
@@ -34,6 +39,18 @@ export default function ExperimentDetailScreen() {
   const getMaterialInfo = (materialName: string): MaterialInfo | null => {
     const materialId = materialName.toLowerCase().replace(/[\s-]/g, '_');
     return materialsData[materialId] || null;
+  };
+
+  const handleStepToggle = async (index: number) => {
+    let newCompletedSteps = [...completedSteps];
+    if (completedSteps.includes(index)) {
+      newCompletedSteps = completedSteps.filter(step => step !== index);
+    } else {
+      newCompletedSteps = [...completedSteps, index];
+    }
+    setCompletedSteps(newCompletedSteps);
+    setStepComplete(newCompletedSteps.length);
+    await updateExperimentSteps(id as string, newCompletedSteps);
   };
 
   if (!experiment) {
@@ -133,13 +150,13 @@ export default function ExperimentDetailScreen() {
           {experiment.steps.map((step, index) => (
             <TouchableOpacity 
               key={index}
-              style={[styles.step, stepComplete > index && styles.stepCompleted]}
-              onPress={() => setStepComplete(index + 1)}
+              style={[styles.step, completedSteps.includes(index) && styles.stepCompleted]}
+              onPress={() => handleStepToggle(index)}
             >
               <Ionicons 
-                name={stepComplete > index ? "checkmark-circle" : "radio-button-off"} 
+                name={completedSteps.includes(index) ? "checkmark-circle" : "radio-button-off"} 
                 size={24} 
-                color={stepComplete > index ? "#4CAF50" : "#666"}
+                color={completedSteps.includes(index) ? "#4CAF50" : "#666"}
               />
               <Text style={styles.stepText}>{step}</Text>
             </TouchableOpacity>
@@ -157,11 +174,17 @@ export default function ExperimentDetailScreen() {
         </View>
 
         <TouchableOpacity 
-          style={[styles.button, stepComplete === experiment.steps.length && styles.buttonReady]}
+          style={[
+            styles.button, 
+            stepComplete === experiment.steps.length ? styles.buttonReady : styles.buttonIncomplete
+          ]}
           onPress={() => stepComplete === experiment.steps.length && router.push(`/experiment/${id}/result`)}
         >
-          <Text style={styles.buttonText}>
-            {stepComplete === experiment.steps.length ? "See Results!" : "Complete All Steps"}
+          <Text style={[
+            styles.buttonText,
+            stepComplete !== experiment.steps.length && styles.buttonTextIncomplete
+          ]}>
+            {stepComplete === experiment.steps.length ? "I am Done!" : "Complete All Steps"}
           </Text>
         </TouchableOpacity>
       </View>
@@ -302,5 +325,11 @@ const styles = StyleSheet.create({
   materialItemWithInfo: {
     borderColor: '#007AFF',
     borderWidth: 1,
+  },
+  buttonIncomplete: {
+    backgroundColor: '#E0E0E0',
+  },
+  buttonTextIncomplete: {
+    color: '#666',
   },
 }); 
