@@ -16,14 +16,14 @@ const experiment: CompleteExperiment = {
     { name: "Spoon", amount: "1", icon: "restaurant-outline" }
   ],
   steps: [
-    "Dissolve Epsom salt in hot water in the mixing bowl",
-    "Using spoon, stir until no crystals remain visible",
-    "Divide solution into smaller portions",
-    "Add different food coloring to each portion",
-    "Pour the solutions into your glass container",
-    "Place the container in a warm, dry place",
-    "Watch crystals form over several days",
-    "Observe daily changes in crystal size"
+    "Heat 1 cup water until very hot (but not boiling)",
+    "Pour hot water into mixing bowl and add 1 cup Epsom salt",
+    "Stir continuously for 2 minutes until crystals dissolve",
+    "Divide solution equally into 3-4 small cups",
+    "Add 5 drops of different food coloring to each cup",
+    "Carefully pour colored solutions into glass container",
+    "Place container in warm, dry place away from vibrations",
+    "Check daily for 7 days as crystals grow"
   ],
   safetyNotes: [
     "Adult supervision required",

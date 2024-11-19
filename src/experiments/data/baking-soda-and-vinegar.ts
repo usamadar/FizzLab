@@ -13,10 +13,11 @@ const experiment: CompleteExperiment = {
     { name: "Large Container", amount: "1", icon: "flask-outline" },
   ],
   steps: [
-    "Place the container on a flat surface",
-    "Pour the vinegar into the container",
-    "Slowly add the baking soda",
-    "Watch the reaction happen!"
+    "Place the large container on a flat surface in a well-ventilated area",
+    "Pour 1/2 cup vinegar into the container",
+    "Add baking soda one tablespoon at a time while stirring",
+    "Stand back and watch the bubbling reaction",
+    "After reaction slows, add remaining baking soda"
   ],
   safetyNotes: [
     "Keep away from eyes",

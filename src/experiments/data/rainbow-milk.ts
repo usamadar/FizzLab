@@ -15,11 +15,12 @@ const experiment: CompleteExperiment = {
     { name: "Cotton Swab", amount: "1", icon: "brush-outline" }
   ],
   steps: [
-    "Pour milk into the shallow dish",
-    "Add drops of different food colors around the milk",
-    "Dip the cotton swab in dish soap",
-    "Touch the soapy swab to different colored areas",
-    "Watch the colors dance and swirl!",
+    "Pour 1 cup whole milk into the shallow dish (about 1/2 inch deep)",
+    "Add 3-4 drops of each food color in different spots around the milk",
+    "Put one small drop of dish soap on the cotton swab tip",
+    "Gently touch the soapy swab to different colored areas",
+    "Keep cotton swab tip touching milk surface as colors swirl",
+    "Add another drop of soap to swab when movement slows",
     "Try touching different spots to create new patterns"
   ],
   safetyNotes: [

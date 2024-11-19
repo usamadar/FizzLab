@@ -17,15 +17,15 @@ const experiment: CompleteExperiment = {
     { name: "Flashlight", amount: "1", icon: "flashlight-outline" }
   ],
   steps: [
-    "Pour hot water into the jar (about 1 inch)",
-    "Place metal plate on top of jar",
-    "Put ice cubes on the plate",
-    "Place dark paper behind jar for better visibility",
-    "Wait 20 seconds for temperature difference",
-    "Remove plate briefly and spray hairspray into jar",
-    "Quickly replace the plate with ice",
-    "Watch cloud form with flashlight",
-    "Remove lid to release cloud"
+    "Pour hot (but not boiling) water into jar to 1-inch depth",
+    "Place metal plate/lid securely on top of jar",
+    "Add 4-5 ice cubes to the plate surface",
+    "Position dark paper 6 inches behind jar",
+    "Wait exactly 20 seconds for temperature difference",
+    "Remove plate and quickly spray 2 short bursts of hairspray",
+    "Immediately replace plate with ice cubes",
+    "Shine flashlight from side to observe cloud formation",
+    "After 1 minute, remove lid to release cloud"
   ],
   safetyNotes: [
     "Adult supervision required",

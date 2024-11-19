@@ -15,14 +15,14 @@ const experiment: CompleteExperiment = {
     { name: "Measuring Cup", amount: "1", icon: "beaker-outline" }
   ],
   steps: [
-    "Line up 7 glasses in a row",
-    "Using measuring cup, fill alternate glasses with water (1,3,5,7)",
-    "Add different food coloring to each filled glass",
-    "Fold paper towels into long strips",
-    "Create bridges between glasses with paper towels",
-    "Make sure paper towel ends touch bottom of glasses",
-    "Watch colors travel across paper bridges",
-    "Observe new colors forming where they meet"
+    "Line up 7 glasses in a row on a stable surface",
+    "Fill measuring cup with 1/2 cup water for each glass",
+    "Pour water into alternate glasses (1st, 3rd, 5th, and 7th)",
+    "Add red food coloring to the 1st glass, yellow to the 3rd glass, and blue to the 5th glass (4-5 drops each)",
+    "Fold each paper towel in half lengthwise to make strips",
+    "Create bridges by placing paper towel ends in adjacent glasses",
+    "Make sure paper towel ends touch bottom of each glass",
+    "Wait 20-30 minutes to watch colors travel and mix"
   ],
   safetyNotes: [
     "Keep workspace protected from spills",

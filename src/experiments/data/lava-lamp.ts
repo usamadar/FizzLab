@@ -16,14 +16,14 @@ const experiment: CompleteExperiment = {
     { name: "Flashlight", amount: "1", icon: "flashlight-outline" },
   ],
   steps: [
-    "Fill the bottle about 1/4 with water",
-    "Add several drops of food coloring to the water",
-    "Slowly pour the vegetable oil into the bottle until nearly full",
-    "Wait for the oil and water to separate completely",
-    "Break the Alka-Seltzer tablets into half-sized pieces",
-    "Drop in one piece and watch the reaction",
-    "Shine the flashlight through the bottle for extra effect",
-    "Add more tablet pieces when the reaction slows down"
+    "Fill the bottle 1/4 full with room temperature water",
+    "Add 10 drops of food coloring to the water and stir",
+    "Slowly pour vegetable oil until bottle is almost full (leave 1 inch at top)",
+    "Wait 2 minutes for oil and water to separate completely",
+    "Break each Alka-Seltzer tablet into 4 small pieces",
+    "Drop in one piece and watch bubbles form",
+    "Shine flashlight from behind the bottle for better effect",
+    "Add another piece when bubbling slows (about every 2 minutes)"
   ],
   safetyNotes: [
     "Adult supervision required",

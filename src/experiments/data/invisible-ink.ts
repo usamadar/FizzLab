@@ -16,14 +16,14 @@ const experiment: CompleteExperiment = {
     { name: "Water", amount: "2 tablespoons", icon: "water-outline" }
   ],
   steps: [
-    "Mix equal parts lemon juice and water in bowl",
-    "Dip cotton swab in mixture",
-    "Write or draw on white paper",
-    "Let the paper dry completely",
-    "Hold paper near (not too close) to heat source",
-    "Watch your message appear in brown color",
-    "Try different messages and drawings",
-    "Compare results with different heat distances"
+    "Mix 1/4 cup lemon juice with 1/4 cup water in bowl",
+    "Dip cotton swab in mixture (don't oversoak)",
+    "Write or draw lightly on white paper (avoid tearing)",
+    "Let paper dry completely (5-10 minutes)",
+    "Hold paper 6 inches from heat source (lamp or hair dryer)",
+    "Move paper slowly near heat until message appears brown",
+    "Try different messages and drawings on new paper",
+    "Test different heat distances (4-8 inches) for best results"
   ],
   safetyNotes: [
     "Adult supervision required",
