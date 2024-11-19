@@ -20,7 +20,8 @@ export default function ResultScreen() {
     const markAsCompleted = async () => {
       await setExperimentStatus(id as string, {
         isCompleted: true,
-        lastCompletedAt: new Date()
+        lastCompletedAt: new Date(),
+        completedSteps: []
       });
     };
     markAsCompleted();
