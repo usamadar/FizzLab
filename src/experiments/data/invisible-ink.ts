@@ -12,7 +12,7 @@ const experiment: CompleteExperiment = {
     { name: "White Paper", amount: "several sheets", icon: "document-outline" },
     { name: "Cotton Swab/Brush", amount: "1", icon: "brush-outline" },
     { name: "Hair Dryer/Lamp", amount: "1", icon: "bulb-outline" },
-    { name: "Small Bowl", amount: "1", icon: "bowl-outline" },
+    { name: "Small Bowl", amount: "1", icon: "cafe-outline" },
     { name: "Water", amount: "2 tablespoons", icon: "water-outline" }
   ],
   steps: [

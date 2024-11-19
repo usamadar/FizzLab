@@ -12,7 +12,7 @@ const experiment: CompleteExperiment = {
     { name: "Water", amount: "2 cups", icon: "water-outline" },
     { name: "Vegetable Oil", amount: "1 cup", icon: "beaker-outline" },
     { name: "Food Coloring", amount: "10-15 drops", icon: "color-palette-outline" },
-    { name: "Alka-Seltzer", amount: "1 tablet", icon: "tablet-portrait-outline" },
+    { name: "Alka-Seltzer", amount: "1 or 2 tablets", icon: "tablet-portrait-outline" },
     { name: "Flashlight", amount: "1", icon: "flashlight-outline" },
   ],
   steps: [
@@ -20,7 +20,7 @@ const experiment: CompleteExperiment = {
     "Add several drops of food coloring to the water",
     "Slowly pour the vegetable oil into the bottle until nearly full",
     "Wait for the oil and water to separate completely",
-    "Break the Alka-Seltzer tablet into small pieces",
+    "Break the Alka-Seltzer tablets into half-sized pieces",
     "Drop in one piece and watch the reaction",
     "Shine the flashlight through the bottle for extra effect",
     "Add more tablet pieces when the reaction slows down"

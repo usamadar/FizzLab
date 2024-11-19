@@ -250,11 +250,12 @@ const styles = StyleSheet.create({
   },
   step: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     backgroundColor: 'white',
     padding: 12,
     borderRadius: 8,
     marginBottom: 8,
+    flex: 1,
   },
   stepCompleted: {
     backgroundColor: '#E8F5E9',
@@ -262,6 +263,8 @@ const styles = StyleSheet.create({
   stepText: {
     marginLeft: 12,
     fontSize: 16,
+    flexShrink: 1,
+    flex: 1,
   },
   safetyNote: {
     flexDirection: 'row',
