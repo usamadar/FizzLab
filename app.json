@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "FizzLab",
-    "slug": "FizzLab",
+    "slug": "fizzlab",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/fizzlab-icon.png",
@@ -39,6 +39,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "350cf717-3ebd-4385-8be2-3106697a1207"
+      }
+    },
+    "owner": "usamadar"
   }
 }
