@@ -122,12 +122,15 @@ const styles = StyleSheet.create({
   },
   listItem: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     marginBottom: 8,
+    flexWrap: 'nowrap',
   },
   listText: {
     marginLeft: 10,
     fontSize: 16,
+    flex: 1,
+    flexWrap: 'wrap',
   },
   whereToFind: {
     fontSize: 16,
