@@ -30,9 +30,8 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/fizzlab-icon.png",
-          "imageWidth": 200,
-          "resizeMode": "contain",
+          "image": "./assets/images/fizzlab-icon-full.jpeg",
+          "resizeMode": "cover",
           "backgroundColor": "#ffffff"
         }
       ]
