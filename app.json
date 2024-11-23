@@ -26,15 +26,7 @@
       "favicon": "./assets/images/app/fizzlab-favicon.png"
     },
     "plugins": [
-      "expo-router",
-      [
-        "expo-splash-screen",
-        {
-          "image": "./assets/images/app/fizzlab-icon-full.png",
-          "resizeMode": "cover",
-          "backgroundColor": "#ffffff"
-        }
-      ]
+      "expo-router"
     ],
     "experiments": {
       "typedRoutes": true
