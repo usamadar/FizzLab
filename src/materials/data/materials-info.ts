@@ -124,6 +124,105 @@ export const materialsData: Record<string, MaterialInfo> = {
       'Keep away from electronics and credit cards',
       'Store in a safe place away from children'
     ]
+  },
+
+  baking_soda: {
+    id: 'baking_soda',
+    name: 'Baking Soda',
+    description: 'A white crystalline powder (sodium bicarbonate) that acts as a base in chemical reactions.',
+    commonUses: [
+      'Chemical reactions',
+      'Baking',
+      'Cleaning',
+      'pH adjustment'
+    ],
+    alternatives: ['Baking powder (but results will differ)'],
+    category: 'chemical',
+    whereToFind: 'Baking aisle of grocery stores',
+    tips: [
+      'Store in a dry place',
+      'Keep container sealed to prevent moisture',
+      'Can be used as a natural cleaner'
+    ]
+  },
+
+  vinegar: {
+    id: 'vinegar',
+    name: 'Vinegar',
+    description: 'A solution containing acetic acid and water, commonly used in cooking and experiments.',
+    commonUses: [
+      'Chemical reactions',
+      'Cooking',
+      'Cleaning',
+      'Preservation'
+    ],
+    alternatives: ['White vinegar preferred, but apple cider vinegar can work'],
+    category: 'chemical',
+    whereToFind: 'Condiment aisle of grocery stores',
+    tips: [
+      'White vinegar works best for experiments',
+      'Keep away from eyes',
+      'Use in well-ventilated area'
+    ]
+  },
+
+  food_coloring: {
+    id: 'food_coloring',
+    name: 'Food Coloring',
+    description: 'Concentrated liquid dyes used to add color to substances.',
+    commonUses: [
+      'Science experiments',
+      'Baking',
+      'Craft projects',
+      'Color demonstrations'
+    ],
+    alternatives: ['Natural food dyes', 'Liquid watercolors (for non-food experiments)'],
+    category: 'chemical',
+    whereToFind: 'Baking aisle of grocery stores',
+    tips: [
+      'Can stain clothes and skin',
+      'A little goes a long way',
+      'Primary colors are most versatile'
+    ]
+  },
+
+  vegetable_oil: {
+    id: 'vegetable_oil',
+    name: 'Vegetable Oil',
+    description: 'A plant-based oil that is less dense than water, making it perfect for density experiments.',
+    commonUses: [
+      'Density experiments',
+      'Cooking',
+      'Lava lamp demonstrations',
+      'Surface tension studies'
+    ],
+    alternatives: ['Canola oil', 'Corn oil'],
+    category: 'household',
+    whereToFind: 'Cooking oil aisle of grocery stores',
+    tips: [
+      'Use clear oil for best visual effects',
+      'Room temperature works best',
+      'Can be reused for multiple experiments'
+    ]
+  },
+
+  hairspray: {
+    id: 'hairspray',
+    name: 'Hairspray',
+    description: 'An aerosol product that provides nucleation sites for cloud formation in experiments.',
+    commonUses: [
+      'Cloud formation experiments',
+      'Hair styling',
+      'Preserving art projects'
+    ],
+    alternatives: ['Aerosol deodorant (unscented)'],
+    category: 'household',
+    whereToFind: 'Personal care aisle of grocery stores or drugstores',
+    tips: [
+      'Use in well-ventilated area',
+      'Quick sprays work best',
+      'Unscented varieties preferred for experiments'
+    ]
   }
 };
 
