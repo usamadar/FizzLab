@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ExperimentStore, ExperimentStatus } from '@/src/types/experiment';
 
 const STORAGE_KEY = '@experiment_status';
+const ONBOARDING_KEY = '@onboarding_complete';
 
 export const getExperimentStatus = async (experimentId: string): Promise<ExperimentStatus | null> => {
   try {
@@ -53,5 +54,23 @@ export const resetExperimentStatus = async (experimentId: string) => {
     }
   } catch (error) {
     console.error('Error resetting experiment status:', error);
+  }
+};
+
+export const isOnboardingComplete = async (): Promise<boolean> => {
+  try {
+    const value = await AsyncStorage.getItem(ONBOARDING_KEY);
+    return value === 'true';
+  } catch (error) {
+    console.error('Error checking onboarding status:', error);
+    return false;
+  }
+};
+
+export const setOnboardingComplete = async () => {
+  try {
+    await AsyncStorage.setItem(ONBOARDING_KEY, 'true');
+  } catch (error) {
+    console.error('Error setting onboarding status:', error);
   }
 }; 

@@ -6,7 +6,7 @@ export default function RootLayout() {
       <Stack.Screen 
         name="(screens)/index" 
         options={{ 
-          title: 'Fizz Lab',
+          headerShown: false,
           headerBackVisible: false
         }} 
       />

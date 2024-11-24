@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, TouchableOpacity, Image, StyleSheet, TextInput, ScrollView } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, Image, StyleSheet, TextInput, ScrollView, Platform } from 'react-native';
 import { Link } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -7,6 +7,10 @@ import { getExperimentStatus } from '@/src/utils/storage';
 import { useFocusEffect } from '@react-navigation/native';
 import { getExperimentsList } from '@/src/experiments';
 import { ExperimentStatus } from '@/src/types/experiment';
+import { OnboardingModal } from '@/src/components/onboarding/OnboardingModal';
+import { isOnboardingComplete, setOnboardingComplete } from '@/src/utils/storage';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Define the experiment type
 type Experiment = {
@@ -58,6 +62,7 @@ const getExperimentStats = (statuses: {[key: string]: ExperimentStatus}) => {
 
 export default function HomeScreen() {
   const [completionStatus, setCompletionStatus] = useState<{[key: string]: ExperimentStatus}>({});
+  const [showOnboarding, setShowOnboarding] = useState(false);
 
   const loadCompletionStatus = async () => {
     const statuses: {[key: string]: ExperimentStatus} = {};
@@ -74,6 +79,21 @@ export default function HomeScreen() {
     }, [])
   );
 
+  useEffect(() => {
+    const checkOnboarding = async () => {
+      const completed = await isOnboardingComplete();
+      if (!completed) {
+        setShowOnboarding(true);
+      }
+    };
+    checkOnboarding();
+  }, []);
+
+  const handleOnboardingClose = async () => {
+    setShowOnboarding(false);
+    await setOnboardingComplete();
+  };
+
   // Get gradient colors based on difficulty
   const getGradientColors = (difficulty: string): [string, string] => {
     switch(difficulty.toLowerCase()) {
@@ -88,108 +108,148 @@ export default function HomeScreen() {
     }
   };
 
+  const clearStorage = async () => {
+    try {
+      await AsyncStorage.clear();
+      console.log('Storage cleared!');
+      // Reload completion status
+      loadCompletionStatus();
+      // Reset onboarding
+      setShowOnboarding(true);
+    } catch (error) {
+      console.error('Error clearing storage:', error);
+    }
+  };
+
   return (
-    <View style={styles.container}>
-      <View style={styles.heroSection}>
-        <LinearGradient
-          colors={['#6366F1', '#8B5CF6']}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 1 }}
-          style={styles.heroGradient}
-        >
-          <View style={styles.heroContent}>
-            <View style={styles.heroTextContainer}>
-              <Text style={styles.heroTitle}>Ready to get Fizzical?</Text>
-              <Text style={styles.heroSubtitle}>
-                Discover the magic of science through fun experiments! 🧪
-              </Text>
-            </View>
-            <View style={styles.statsContainer}>
-              <View style={styles.statItem}>
-                <Text style={styles.statNumber}>
-                  {getExperimentStats(completionStatus).completed}
-                </Text>
-                <Text style={styles.statLabel}>Completed</Text>
-              </View>
-              <View style={styles.statDivider} />
-              <View style={styles.statItem}>
-                <Text style={styles.statNumber}>
-                  {getExperimentStats(completionStatus).inProgress}
-                </Text>
-                <Text style={styles.statLabel}>In Progress</Text>
-              </View>
-              <View style={styles.statDivider} />
-              <View style={styles.statItem}>
-                <Text style={styles.statNumber}>{experiments.length}</Text>
-                <Text style={styles.statLabel}>Total</Text>
-              </View>
-            </View>
-          </View>
-        </LinearGradient>
-      </View>
-      <FlatList
-        contentContainerStyle={styles.listContainer}
-        showsVerticalScrollIndicator={false}
-        data={experiments}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <Link href={`/experiment/${item.id}`} asChild>
-            <TouchableOpacity>
-              <LinearGradient
-                colors={getGradientColors(item.difficulty)}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 0 }}
-                style={styles.gradientCard}
-              >
-                <Image 
-                  source={item.image} 
-                  style={styles.image}
-                  resizeMode="cover"
-                />
-                <View style={styles.cardContent}>
-                  <Text style={[styles.cardTitle, { color: '#fff' }]}>
-                    {item.title}
-                  </Text>
-                  <Text style={[styles.cardSubtitle, { color: '#fff' }]}>
-                    Tap to start →
-                  </Text>
-                  <View style={styles.cardMeta}>
-                    <View style={[styles.difficultyBadge, { backgroundColor: 'rgba(255,255,255,0.2)' }]}>
-                      <Text style={styles.badgeText}>{item.difficulty}</Text>
-                    </View>
-                    <Text style={[styles.duration, { color: '#fff' }]}>
-                      {item.duration}
-                    </Text>
-                  </View>
-                  {completionStatus[item.id]?.isCompleted && (
-                    <View style={styles.completionBadge}>
-                      <Ionicons 
-                        name="checkmark-circle" 
-                        size={24} 
-                        color="#4CAF50" 
-                      />
-                    </View>
-                  )}
-                  {!completionStatus[item.id]?.isCompleted && completionStatus[item.id]?.completedSteps?.length > 0 && (
-                    <View style={styles.inProgressBadge}>
-                      <Ionicons 
-                        name="time" 
-                        size={24} 
-                        color="#FF9800" 
-                      />
-                    </View>
-                  )}
-                </View>
-              </LinearGradient>
-            </TouchableOpacity>
-          </Link>
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
+        {__DEV__ && (
+          <TouchableOpacity 
+            style={styles.devButton}
+            onPress={clearStorage}
+          >
+            <Text style={styles.devButtonText}>Reset Storage</Text>
+          </TouchableOpacity>
         )}
-      />
-    </View>
+        <View style={styles.header}>
+          <Text style={styles.headerTitle}>Fizz Lab</Text>
+          <TouchableOpacity 
+            style={styles.infoButton}
+            onPress={() => setShowOnboarding(true)}
+          >
+            <Ionicons name="information-circle" size={24} color="#6366F1" />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.heroSection}>
+          <LinearGradient
+            colors={['#6366F1', '#8B5CF6']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={styles.heroGradient}
+          >
+            <View style={styles.heroContent}>
+              <View style={styles.heroTextContainer}>
+                <Text style={styles.heroTitle}>Ready to get Fizzical?</Text>
+                <Text style={styles.heroSubtitle}>
+                  Discover the magic of science through fun experiments! 🧪
+                </Text>
+              </View>
+              <View style={styles.statsContainer}>
+                <View style={styles.statItem}>
+                  <Text style={styles.statNumber}>
+                    {getExperimentStats(completionStatus).completed}
+                  </Text>
+                  <Text style={styles.statLabel}>Completed</Text>
+                </View>
+                <View style={styles.statDivider} />
+                <View style={styles.statItem}>
+                  <Text style={styles.statNumber}>
+                    {getExperimentStats(completionStatus).inProgress}
+                  </Text>
+                  <Text style={styles.statLabel}>In Progress</Text>
+                </View>
+                <View style={styles.statDivider} />
+                <View style={styles.statItem}>
+                  <Text style={styles.statNumber}>{experiments.length}</Text>
+                  <Text style={styles.statLabel}>Total</Text>
+                </View>
+              </View>
+            </View>
+          </LinearGradient>
+        </View>
+        <FlatList
+          contentContainerStyle={styles.listContainer}
+          showsVerticalScrollIndicator={false}
+          data={experiments}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <Link href={`/experiment/${item.id}`} asChild>
+              <TouchableOpacity>
+                <LinearGradient
+                  colors={getGradientColors(item.difficulty)}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 0 }}
+                  style={styles.gradientCard}
+                >
+                  <Image 
+                    source={item.image} 
+                    style={styles.image}
+                    resizeMode="cover"
+                  />
+                  <View style={styles.cardContent}>
+                    <Text style={[styles.cardTitle, { color: '#fff' }]}>
+                      {item.title}
+                    </Text>
+                    <Text style={[styles.cardSubtitle, { color: '#fff' }]}>
+                      Tap to start →
+                    </Text>
+                    <View style={styles.cardMeta}>
+                      <View style={[styles.difficultyBadge, { backgroundColor: 'rgba(255,255,255,0.2)' }]}>
+                        <Text style={styles.badgeText}>{item.difficulty}</Text>
+                      </View>
+                      <Text style={[styles.duration, { color: '#fff' }]}>
+                        {item.duration}
+                      </Text>
+                    </View>
+                    {completionStatus[item.id]?.isCompleted && (
+                      <View style={styles.completionBadge}>
+                        <Ionicons 
+                          name="checkmark-circle" 
+                          size={24} 
+                          color="#4CAF50" 
+                        />
+                      </View>
+                    )}
+                    {!completionStatus[item.id]?.isCompleted && completionStatus[item.id]?.completedSteps?.length > 0 && (
+                      <View style={styles.inProgressBadge}>
+                        <Ionicons 
+                          name="time" 
+                          size={24} 
+                          color="#FF9800" 
+                        />
+                      </View>
+                    )}
+                  </View>
+                </LinearGradient>
+              </TouchableOpacity>
+            </Link>
+          )}
+        />
+        <OnboardingModal 
+          visible={showOnboarding}
+          onClose={handleOnboardingClose}
+        />
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#f8f8f8',
+  },
   container: { 
     flex: 1, 
     padding: 16,
@@ -321,5 +381,29 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.9)',
     borderRadius: 12,
     padding: 4,
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  headerTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#333',
+  },
+  infoButton: {
+    padding: 8,
+  },
+  devButton: {
+    backgroundColor: '#FF0000',
+    padding: 8,
+    borderRadius: 8,
+    marginBottom: 8,
+  },
+  devButtonText: {
+    color: '#fff',
+    textAlign: 'center',
   },
 }); 
